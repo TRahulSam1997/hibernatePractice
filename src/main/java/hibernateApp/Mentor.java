@@ -1,14 +1,18 @@
 package hibernateApp;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name="mentor_table")
 public class Mentor {
 
     @Id
     private int userId;
+
+    @Transient
     private String userName;
+
+    @Column(name="mentor_profession")
     private String profession;
 
     public int getUserId() {
