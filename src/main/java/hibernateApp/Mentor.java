@@ -8,10 +8,9 @@ public class Mentor {
 
     @Id
     private int userId;
-
+    private MentorName mentorName;
 //    @Transient
     private String userName;
-
 //    @Column(name="mentor_profession")
     private String profession;
 
@@ -21,6 +20,14 @@ public class Mentor {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public MentorName getMentorName() {
+        return mentorName;
+    }
+
+    public void setMentorName(MentorName mentorName) {
+        this.mentorName = mentorName;
     }
 
     public String getUserName() {
@@ -43,6 +50,7 @@ public class Mentor {
     public String toString() {
         return "Mentor{" +
                 "userId=" + userId +
+                ", mentorName='" + mentorName + '\'' +
                 ", userName='" + userName + '\'' +
                 ", profession='" + profession + '\'' +
                 '}';

@@ -11,10 +11,16 @@ public class HibernateMain {
     public static void main(String[] args) {
         {
 //            System.out.println("Hello World!");
-            Mentor dom = null;
-//            dom.setUserId(107);
-//            dom.setUserName("Tolstoy");
-//            dom.setProfession("Author");
+            MentorName mn = new MentorName();
+            mn.setFname("Lev");
+            mn.setLname("Tolstoy");
+            mn.setMname("Nikolayevich");
+
+            Mentor mentor = new Mentor();
+            mentor.setUserId(101);
+            mentor.setMentorName(mn);
+            mentor.setUserName("Tolstoy");
+            mentor.setProfession("Author");
 
             Configuration con = new Configuration().configure().addAnnotatedClass(Mentor.class);
 
@@ -28,13 +34,13 @@ public class HibernateMain {
 
             Transaction tx = session.beginTransaction();
 
-//            session.save(dom);
+            session.save(mentor);
 
-            dom = (Mentor) session.get(Mentor.class, 106);
+//            dom = (Mentor) session.get(Mentor.class, 106);
 
             tx.commit();
 
-            System.out.println(dom);
+            System.out.println(mentor);
         }
     }
 }
