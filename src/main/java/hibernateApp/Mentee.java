@@ -14,7 +14,7 @@ public class Mentee {
     private int menteeId;
     private String name;
     private int marks;
-    @OneToMany
+    @OneToMany(mappedBy = "mentee")
     private List<Laptop> laptop = new ArrayList<>();
 
     public int getMenteeId() {

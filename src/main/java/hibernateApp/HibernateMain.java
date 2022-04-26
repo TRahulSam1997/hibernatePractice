@@ -20,6 +20,8 @@ public class HibernateMain {
             m.setMarks(80);
             m.getLaptop().add(laptop);
 
+            laptop.getMentee().add(m);
+
             Configuration config = new Configuration().configure().addAnnotatedClass(Mentee.class).addAnnotatedClass(Laptop.class);
             ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
             SessionFactory sf = config.buildSessionFactory(reg);
