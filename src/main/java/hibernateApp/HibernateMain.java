@@ -12,22 +12,43 @@ import java.util.Collection;
 public class HibernateMain {
     public static void main(String[] args) {
         {
-            Configuration config = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Admin.class);
-            SessionFactory sf = config.buildSessionFactory();
-            Session session = sf.openSession();
 
-            session.beginTransaction();
+            Admin a = null;
 
-            Admin a1 = session.get(Admin.class, 1);
+//            Admin b = new Admin();
+//            b.setAid(3);
+//            b.setAname("gom");
+//            b.setAemail("gom@gom.com");
 
-            System.out.println(a1.getAname());
-            Collection<Laptop> laptops = a1.getLaps();
+            Configuration config = new Configuration().configure().addAnnotatedClass(Admin.class);
+            ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
+            SessionFactory sf = config.buildSessionFactory(reg);
+            Session session1 = sf.openSession();
+            session1.beginTransaction();
 
-            for(Laptop l : laptops) {
-                System.out.println(l);
-            }
+//            session1.save(b);
 
-            session.getTransaction().commit();
+            a = (Admin) session1.get(Admin.class, 1);
+            System.out.println("Value is: " + a);
+
+            session1.getTransaction().commit();
+
+//            Configuration config = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Admin.class);
+//            SessionFactory sf = config.buildSessionFactory();
+//            Session session = sf.openSession();
+//
+//            session.beginTransaction();
+//
+//            Admin a1 = session.get(Admin.class, 1);
+//
+//            System.out.println(a1.getAname());
+//            Collection<Laptop> laptops = a1.getLaps();
+//
+//            for(Laptop l : laptops) {
+//                System.out.println(l);
+//            }
+//
+//            session.getTransaction().commit();
 
 //            Laptop laptop = new Laptop();
 //            laptop.setLid(101);

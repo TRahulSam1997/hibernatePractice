@@ -13,9 +13,10 @@ public class Admin {
     @Id
     private int aid;
     private String aname;
+    private String aemail;
 
-    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER)
-    private Collection<Laptop> laps = new ArrayList<>();
+//    @OneToMany(mappedBy = "admin", fetch = FetchType.EAGER)
+//    private Collection<Laptop> laps = new ArrayList<>();
 
     public int getAid() {
         return aid;
@@ -33,11 +34,19 @@ public class Admin {
         this.aname = aname;
     }
 
-    public Collection<Laptop> getLaps() {
-        return laps;
+//    public Collection<Laptop> getLaps() {
+//        return laps;
+//    }
+//
+//    public void setLaps(Collection<Laptop> laps) {
+//        this.laps = laps;
+//    }
+
+    public String getAemail() {
+        return aemail;
     }
 
-    public void setLaps(Collection<Laptop> laps) {
-        this.laps = laps;
+    public void setAemail(String aemail) {
+        this.aemail = aemail;
     }
 }
