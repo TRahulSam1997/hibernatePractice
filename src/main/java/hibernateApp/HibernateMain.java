@@ -28,11 +28,15 @@ public class HibernateMain {
 
 //            session1.save(b);
 
+            // Session 1
+
             a = (Admin) session1.get(Admin.class, 1);
             System.out.println("Value is: " + a);
 
             session1.getTransaction().commit();
             session1.close();
+
+            // Session 2
 
             Session session2 = sf.openSession();
             session2.beginTransaction();
