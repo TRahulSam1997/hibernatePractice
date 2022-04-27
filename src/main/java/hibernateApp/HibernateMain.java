@@ -5,6 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.Collection;
@@ -23,25 +24,28 @@ public class HibernateMain {
             Configuration config = new Configuration().configure().addAnnotatedClass(Admin.class);
             ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
             SessionFactory sf = config.buildSessionFactory(reg);
+
+            /* Session 1 */
+
             Session session1 = sf.openSession();
             session1.beginTransaction();
 
-//            session1.save(b);
-
-            // Session 1
-
-            a = (Admin) session1.get(Admin.class, 1);
+            Query q1 = session1.createQuery("from Admin where aid=1");
+            q1.setCacheable(true);
+            a = (Admin) q1.uniqueResult();
             System.out.println("Value is: " + a);
 
             session1.getTransaction().commit();
             session1.close();
 
-            // Session 2
+            /* Session 2 */
 
             Session session2 = sf.openSession();
             session2.beginTransaction();
 
-            a = (Admin) session2.get(Admin.class, 2);
+            Query q2 = session2.createQuery("from Admin where aid=1");
+            q2.setCacheable(true);
+            a = (Admin) q2.uniqueResult();
             System.out.println("Value is: " + a);
 
             session2.getTransaction().commit();
