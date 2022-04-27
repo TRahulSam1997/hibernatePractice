@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.Collection;
+import java.util.Random;
 
 public class HibernateMain {
     public static void main(String[] args) {
@@ -19,6 +20,15 @@ public class HibernateMain {
             Session session = sf.openSession();
 
             session.beginTransaction();
+            Random r = new Random();
+
+            for(int i=1; i <= 50; i++) {
+                Mentee m = new Mentee();
+                m.setMenteeId(i);
+                m.setName("Name " + i);
+                m.setMarks(r.nextInt(100));
+                session.save(m);
+            }
 
             session.getTransaction().commit();
 //            Admin a = null;
