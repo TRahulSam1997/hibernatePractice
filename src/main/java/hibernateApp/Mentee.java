@@ -14,8 +14,9 @@ public class Mentee {
     private int menteeId;
     private String name;
     private int marks;
-    @OneToMany(mappedBy = "mentee")
-    private List<Laptop> laptop = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "mentee")
+//    private List<Laptop> laptop = new ArrayList<>();
 
     public int getMenteeId() {
         return menteeId;
@@ -41,13 +42,13 @@ public class Mentee {
         this.marks = marks;
     }
 
-    public List<Laptop> getLaptop() {
-        return laptop;
-    }
-
-    public void setLaptop(List<Laptop> laptop) {
-        this.laptop = laptop;
-    }
+//    public List<Laptop> getLaptop() {
+//        return laptop;
+//    }
+//
+//    public void setLaptop(List<Laptop> laptop) {
+//        this.laptop = laptop;
+//    }
 
     @Override
     public String toString() {
