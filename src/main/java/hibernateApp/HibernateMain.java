@@ -32,6 +32,16 @@ public class HibernateMain {
             System.out.println("Value is: " + a);
 
             session1.getTransaction().commit();
+            session1.close();
+
+            Session session2 = sf.openSession();
+            session2.beginTransaction();
+
+            a = (Admin) session2.get(Admin.class, 2);
+            System.out.println("Value is: " + a);
+
+            session2.getTransaction().commit();
+            session2.close();
 
 //            Configuration config = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Admin.class);
 //            SessionFactory sf = config.buildSessionFactory();

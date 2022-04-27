@@ -49,4 +49,13 @@ public class Admin {
     public void setAemail(String aemail) {
         this.aemail = aemail;
     }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "aid=" + aid +
+                ", aname='" + aname + '\'' +
+                ", aemail='" + aemail + '\'' +
+                '}';
+    }
 }
