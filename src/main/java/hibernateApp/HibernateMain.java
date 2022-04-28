@@ -26,13 +26,11 @@ public class HibernateMain {
 
             session.beginTransaction();
 
-            session.save(lp);
-            lp.setPrice(679);
+            lp = session.get(Laptop.class, 3);
+            System.out.println(lp);
 
             session.getTransaction().commit();
 
-            session.detach(lp);
-            lp.setPrice(600);
 
 //            Admin a = null;
 //
