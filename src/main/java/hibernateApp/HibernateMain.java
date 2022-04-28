@@ -13,43 +13,63 @@ import java.util.Collection;
 public class HibernateMain {
     public static void main(String[] args) {
         {
+            Laptop lp = new Laptop();
+//
+//            lp.setLid(22);
+//            lp.setBrand("brand" + 25);
+//            lp.setPrice(10 * 25);
 
-            Admin a = null;
-
-//            Admin b = new Admin();
-//            b.setAid(3);
-//            b.setAname("gom");
-//            b.setAemail("gom@gom.com");
-
-            Configuration config = new Configuration().configure().addAnnotatedClass(Admin.class);
+            Configuration config = new Configuration().configure().addAnnotatedClass(Laptop.class);
             ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
             SessionFactory sf = config.buildSessionFactory(reg);
+            Session session = sf.openSession();
 
-            /* Session 1 */
+            session.beginTransaction();
 
-            Session session1 = sf.openSession();
-            session1.beginTransaction();
+            session.save(lp);
+            lp.setPrice(679);
 
-            Query q1 = session1.createQuery("from Admin where aid=1");
-            q1.setCacheable(true);
-            a = (Admin) q1.uniqueResult();
-            System.out.println("Value is: " + a);
+            session.getTransaction().commit();
 
-            session1.getTransaction().commit();
-            session1.close();
+            session.detach(lp);
+            lp.setPrice(600);
 
-            /* Session 2 */
-
-            Session session2 = sf.openSession();
-            session2.beginTransaction();
-
-            Query q2 = session2.createQuery("from Admin where aid=1");
-            q2.setCacheable(true);
-            a = (Admin) q2.uniqueResult();
-            System.out.println("Value is: " + a);
-
-            session2.getTransaction().commit();
-            session2.close();
+//            Admin a = null;
+//
+////            Admin b = new Admin();
+////            b.setAid(3);
+////            b.setAname("gom");
+////            b.setAemail("gom@gom.com");
+//
+//            Configuration config = new Configuration().configure().addAnnotatedClass(Admin.class);
+//            ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
+//            SessionFactory sf = config.buildSessionFactory(reg);
+//
+//            /* Session 1 */
+//
+//            Session session1 = sf.openSession();
+//            session1.beginTransaction();
+//
+//            Query q1 = session1.createQuery("from Admin where aid=1");
+//            q1.setCacheable(true);
+//            a = (Admin) q1.uniqueResult();
+//            System.out.println("Value is: " + a);
+//
+//            session1.getTransaction().commit();
+//            session1.close();
+//
+//            /* Session 2 */
+//
+//            Session session2 = sf.openSession();
+//            session2.beginTransaction();
+//
+//            Query q2 = session2.createQuery("from Admin where aid=1");
+//            q2.setCacheable(true);
+//            a = (Admin) q2.uniqueResult();
+//            System.out.println("Value is: " + a);
+//
+//            session2.getTransaction().commit();
+//            session2.close();
 
 //            Configuration config = new Configuration().configure().addAnnotatedClass(Laptop.class).addAnnotatedClass(Admin.class);
 //            SessionFactory sf = config.buildSessionFactory();
