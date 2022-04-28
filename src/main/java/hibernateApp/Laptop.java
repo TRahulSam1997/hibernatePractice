@@ -14,8 +14,8 @@ public class Laptop {
     private int lid;
     private String brand;
     private int price;
-    @ManyToOne
-    private Admin admin;
+//    @ManyToOne
+//    private Admin admin;
 
     public int getLid() {
         return lid;
@@ -41,13 +41,13 @@ public class Laptop {
         this.price = price;
     }
 
-    public Admin getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
-    }
+//    public Admin getAdmin() {
+//        return admin;
+//    }
+//
+//    public void setAdmin(Admin admin) {
+//        this.admin = admin;
+//    }
 
     @Override
     public String toString() {
@@ -55,9 +55,9 @@ public class Laptop {
                 "lid=" + lid +
                 ", brand='" + brand + '\'' +
                 ", price=" + price +
-                ", admin=" + admin +
                 '}';
     }
+
 
     //    @Id
 //    private int lid;
