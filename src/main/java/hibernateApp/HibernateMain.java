@@ -8,28 +8,39 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
 import org.hibernate.service.ServiceRegistry;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Collection;
 
 public class HibernateMain {
     public static void main(String[] args) {
         {
-            Laptop lp = new Laptop();
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+            EntityManager em = emf.createEntityManager();
+
+            Laptop lp = em.find(Laptop.class, 4);
+
+            System.out.println(lp);
+
+//            Laptop lp = new Laptop();
+
 //
 //            lp.setLid(22);
 //            lp.setBrand("brand" + 25);
 //            lp.setPrice(10 * 25);
 
-            Configuration config = new Configuration().configure().addAnnotatedClass(Laptop.class);
-            ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
-            SessionFactory sf = config.buildSessionFactory(reg);
-            Session session = sf.openSession();
-
-            session.beginTransaction();
-
-            lp = session.get(Laptop.class, 3);
-            System.out.println(lp);
-
-            session.getTransaction().commit();
+//            Configuration config = new Configuration().configure().addAnnotatedClass(Laptop.class);
+//            ServiceRegistry reg = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
+//            SessionFactory sf = config.buildSessionFactory(reg);
+//            Session session = sf.openSession();
+//
+//            session.beginTransaction();
+//
+//            lp = session.get(Laptop.class, 3);
+//            System.out.println(lp);
+//
+//            session.getTransaction().commit();
 
 
 //            Admin a = null;
