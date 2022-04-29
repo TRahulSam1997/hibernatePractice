@@ -16,12 +16,21 @@ import java.util.Collection;
 public class HibernateMain {
     public static void main(String[] args) {
         {
+            Laptop lp1 = new Laptop();
+            lp1.setLid(212);
+            lp1.setPrice(2332);
+            lp1.setBrand("dee");
+
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
             EntityManager em = emf.createEntityManager();
 
-            Laptop lp = em.find(Laptop.class, 4);
+//            Laptop lp = em.find(Laptop.class, 4);
+            em.getTransaction().begin();
 
-            System.out.println(lp);
+            em.persist(lp1);
+            em.getTransaction().commit();
+
+            System.out.println(lp1);
 
 //            Laptop lp = new Laptop();
 
